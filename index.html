@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="조미정 AX 전문가의 소개 페이지">
+  <title>조미정 | AX 전문가</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    :root { --blue:#2f4bbf; --yellow:#ffe35c; --ink:#172039; --paper:#fffdf7; --muted:#64708a; --line:#e6e8f0; --shadow:0 12px 30px rgba(33,48,103,.12); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; }
+    button, a { font:inherit; }
+    a { color:inherit; }
+    .wrap { width:min(100% - 40px, 1120px); margin:auto; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; padding:20px 0 4px; }
+    .brand { display:flex; gap:9px; align-items:center; font-weight:800; letter-spacing:-.03em; text-decoration:none; }
+    .brand-mark { width:30px; height:30px; background:var(--yellow); border:2px solid var(--ink); border-radius:50% 50% 48% 48%; display:grid; place-items:center; font-size:15px; }
+    .motion-toggle { min-height:44px; border:1.5px solid var(--ink); background:#fff; border-radius:999px; padding:8px 13px; font-size:.88rem; font-weight:700; cursor:pointer; }
+    .motion-toggle:focus-visible, .keyword:focus-visible, .contact-button:focus-visible, .walker:focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
+    .hero { position:relative; isolation:isolate; padding:28px 0 72px; min-height:620px; overflow:hidden; background:linear-gradient(120deg,#eef1ff,#fffdf7,#fff3c2,#eaf0ff); background-size:300% 300%; animation:heroGradient 18s ease infinite; }
+    .hero::before { content:""; position:absolute; z-index:-1; width:330px; height:330px; border-radius:50%; background:var(--yellow); right:-175px; top:65px; opacity:.85; }
+    .hero::after { content:""; position:absolute; z-index:-1; width:120px; height:120px; border:3px solid var(--blue); border-radius:33px; transform:rotate(20deg); right:8%; bottom:55px; opacity:.15; }
+    @keyframes heroGradient { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+    .hero-grid { display:grid; gap:28px; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:7px; margin:0 0 14px; color:var(--blue); font-size:.94rem; font-weight:800; }
+    .eyebrow svg { width:19px; height:19px; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { font-size:clamp(2.45rem, 11vw, 5.5rem); line-height:1.03; letter-spacing:-.075em; margin-bottom:19px; }
+    .hero-name { display:block; font-size:.62em; font-weight:900; line-height:1.1; letter-spacing:-.045em; color:var(--blue); margin-bottom:14px; }
+    .hero-copy { max-width:570px; font-size:1.08rem; color:#43506d; word-break:keep-all; }
+    .accent { background:linear-gradient(transparent 61%, var(--yellow) 0); }
+    .hello { display:inline-block; margin:14px 0 0; padding:8px 13px; background:#fff; border:1px solid var(--line); border-radius:13px 13px 13px 2px; box-shadow:0 5px 14px rgba(33,48,103,.07); font-size:.94rem; font-weight:700; }
+    .portrait-area { position:relative; min-height:275px; display:grid; place-items:center; }
+    .portrait { width:218px; aspect-ratio:1; border-radius:50%; position:relative; overflow:hidden; border:7px solid #fff; background:linear-gradient(140deg,#dfe7ff,#fff3a8); box-shadow:var(--shadow); }
+    .portrait img { width:100%; height:100%; object-fit:cover; }
+    .portrait-fallback { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(145deg,#cbd8ff,#ffef97); }
+    .portrait-fallback svg { width:89%; height:89%; }
+    .portrait.has-photo .portrait-fallback { display:none; }
+    .sticker { position:absolute; right:4%; bottom:1%; background:var(--blue); color:#fff; border-radius:17px 17px 3px 17px; padding:10px 13px; font-size:.88rem; font-weight:800; transform:rotate(-5deg); box-shadow:0 8px 18px rgba(47,75,191,.24); }
+    .shape { position:absolute; width:34px; height:34px; border-radius:9px; background:var(--yellow); border:2px solid var(--ink); transform:rotate(20deg); left:9%; top:15%; }
+    .section { padding:72px 0; }
+    .section:nth-of-type(odd) { background:#fff; }
+    .section-head { margin-bottom:28px; }
+    .section-kicker { display:flex; align-items:center; gap:9px; color:var(--blue); font-size:.92rem; font-weight:800; margin-bottom:7px; }
+    .section-kicker svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    h2 { font-size:clamp(1.75rem, 6vw, 2.75rem); letter-spacing:-.06em; line-height:1.18; margin-bottom:0; word-break:keep-all; }
+    .intro-card { position:relative; padding:27px 24px; background:#fff9cf; border:2px solid var(--ink); border-radius:24px 24px 24px 5px; box-shadow:6px 7px 0 var(--ink); font-size:1.08rem; word-break:keep-all; }
+    .intro-card p:last-child { margin-bottom:0; }
+    .needs-edit { display:inline-block; color:#975900; font-size:.76em; font-weight:800; white-space:nowrap; }
+    .keyword-grid { display:grid; gap:16px; perspective:1000px; }
+    .keyword { min-height:218px; padding:0; position:relative; border:0; background:none; cursor:pointer; text-align:left; perspective:1000px; }
+    .keyword-inner { position:absolute; inset:0; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.2,.7,.2,1); }
+    .keyword.is-flipped .keyword-inner { transform:rotateY(180deg); }
+    .keyword-face { position:absolute; inset:0; padding:24px; border:2px solid var(--ink); border-radius:22px 22px 7px 22px; backface-visibility:hidden; box-shadow:5px 6px 0 var(--ink); }
+    .keyword-front { background:#fff; }
+    .keyword-back { background:var(--blue); color:#fff; transform:rotateY(180deg); }
+    .keyword-icon { width:46px; height:46px; display:grid; place-items:center; border-radius:14px; background:var(--yellow); margin-bottom:17px; }
+    .keyword-icon svg { width:27px; height:27px; fill:none; stroke:var(--ink); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+    .keyword h3 { font-size:1.35rem; letter-spacing:-.04em; margin-bottom:5px; }
+    .keyword small { color:var(--muted); font-size:.92rem; }
+    .keyword-back small { color:#e3e8ff; }
+    .task-grid { display:grid; gap:17px; }
+    .task { position:relative; padding:26px 22px; border:1px solid var(--line); border-radius:22px; background:#fff; box-shadow:0 7px 18px rgba(33,48,103,.06); overflow:hidden; }
+    .task::after { content:""; position:absolute; width:70px; height:70px; border-radius:50%; background:var(--yellow); opacity:.65; right:-24px; top:-25px; }
+    .task-number { color:var(--blue); font-size:.86rem; font-weight:900; }
+    .task h3 { position:relative; font-size:1.28rem; letter-spacing:-.04em; margin:6px 0 11px; }
+    .task p { margin-bottom:0; color:#48536c; word-break:keep-all; }
+    .principles { display:grid; gap:15px; counter-reset:principle; }
+    .principle { display:grid; grid-template-columns:51px 1fr; gap:14px; padding:18px 4px; border-bottom:1px solid var(--line); }
+    .principle::before { counter-increment:principle; content:"0" counter(principle); color:var(--blue); font-size:1.12rem; font-weight:900; }
+    .principle h3 { font-size:1.12rem; margin:0 0 4px; letter-spacing:-.03em; }
+    .principle p { color:var(--muted); margin-bottom:0; word-break:keep-all; }
+    .tag-cloud { display:flex; flex-wrap:wrap; gap:10px; }
+    .tag { padding:10px 15px; border:1.5px solid var(--ink); border-radius:999px; background:#fff; font-weight:700; line-height:1.3; }
+    .tag:nth-child(3n+1) { background:var(--yellow); }
+    .tag:nth-child(3n+2) { color:#fff; background:var(--blue); border-color:var(--blue); }
+    .contact { padding:80px 0 108px; text-align:center; background:var(--blue); color:#fff; }
+    .contact .section-kicker { justify-content:center; color:var(--yellow); }
+    .contact h2 { max-width:630px; margin:0 auto 15px; }
+    .contact p { max-width:470px; margin:0 auto 25px; color:#e5e9ff; word-break:keep-all; }
+    .contact-button { display:inline-flex; justify-content:center; align-items:center; gap:10px; min-width:230px; min-height:54px; padding:12px 20px; border-radius:999px; background:var(--yellow); color:var(--ink); font-weight:900; text-decoration:none; box-shadow:0 6px 0 #d4ba3f; transition:transform .2s, box-shadow .2s; }
+    .contact-button:hover { transform:translateY(-2px); box-shadow:0 8px 0 #d4ba3f; }
+    .contact-button svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .email-note { margin-top:17px !important; font-size:.85rem; }
+    footer { padding:24px 20px 95px; text-align:center; background:var(--blue); color:#cfd7ff; font-size:.82rem; }
+    .walker-wrap { position:fixed; z-index:20; left:0; right:0; bottom:max(11px, env(safe-area-inset-bottom)); pointer-events:none; }
+    .walker { pointer-events:auto; position:relative; display:block; margin-left:-75px; width:65px; padding:0; border:0; background:transparent; cursor:pointer; animation:walk 20s linear infinite; }
+    .walker svg { display:block; width:65px; filter:drop-shadow(0 4px 4px rgba(23,32,57,.18)); }
+    .walker.is-jumping { animation:jump .65s ease-in-out 1, walk 20s linear infinite; }
+    .walker-bubble { position:absolute; width:139px; left:48px; bottom:54px; padding:8px 10px; border:1.5px solid var(--ink); border-radius:12px 12px 12px 2px; background:#fff; color:var(--ink); font-size:.78rem; font-weight:800; line-height:1.35; opacity:0; transform:translateY(8px); transition:.25s; pointer-events:none; }
+    .walker-bubble.show { opacity:1; transform:translateY(0); }
+    @keyframes walk { from { transform:translateX(0); } to { transform:translateX(calc(100vw + 150px)); } }
+    @keyframes jump { 0%,100% { translate:0 0; } 48% { translate:0 -30px; } }
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity .55s ease, transform .55s ease; }
+    .reveal.show { opacity:1; transform:none; }
+    @media (min-width:700px) {
+      .wrap { width:min(100% - 72px,1120px); }
+      .hero { padding-bottom:95px; min-height:660px; }
+      .hero-grid { grid-template-columns:1.18fr .82fr; gap:45px; }
+      .portrait-area { min-height:370px; }
+      .portrait { width:300px; }
+      .sticker { right:0; bottom:10%; }
+      .keyword-grid { grid-template-columns:repeat(3,1fr); }
+      .task-grid { grid-template-columns:repeat(2,1fr); }
+      .principles { grid-template-columns:repeat(3,1fr); }
+      .principle { display:block; border:0; padding:10px 10px 10px 0; }
+      .principle::before { display:block; margin-bottom:14px; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } .reveal { opacity:1; transform:none; } .walker-wrap { display:none; } }
+    body.motion-off *, body.motion-off *::before, body.motion-off *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    body.motion-off .reveal { opacity:1; transform:none; }
+    body.motion-off .walker-wrap { display:none; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <nav class="topbar" aria-label="상단 메뉴">
+          <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">M</span>MIJEONG</a>
+          <button class="motion-toggle" type="button" aria-pressed="false">동작 줄이기</button>
+        </nav>
+        <div class="hero-grid" id="top">
+          <div class="reveal">
+            <p class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="timeGreeting">반가워요, 오늘도.</span></p>
+            <h1><span class="hero-name">AX 전문가 조미정</span><span class="accent">일의 복잡함을<br>대화의 흐름으로</span><br>바꿉니다.</h1>
+            <p class="hero-copy">기술을 앞세우기보다, 사람이 더 가볍게 일할 수 있는 순간부터 함께 설계합니다.</p>
+            <p class="hello">“무엇을 자동화할까?”보다 “어디서 막히고 있을까?”부터 듣습니다.</p>
+          </div>
+          <div class="portrait-area reveal" aria-label="조미정 프로필 사진 자리">
+            <span class="shape" aria-hidden="true"></span>
+            <div class="portrait" id="portrait">
+              <img src="photo.jpg" alt="조미정 프로필 사진" onload="this.parentElement.classList.add('has-photo')" onerror="this.remove()">
+              <div class="portrait-fallback" aria-hidden="true">
+                <svg viewBox="0 0 240 240"><path d="M63 194c9-42 32-59 57-59s49 17 57 59" fill="#2f4bbf"/><circle cx="120" cy="96" r="48" fill="#ffd79c"/><path d="M70 87c2-43 32-61 54-61 33 0 54 25 52 67-14-11-24-25-29-39-19 18-42 27-77 28z" fill="#263458"/><path d="M100 98h7M133 98h7" stroke="#172039" stroke-width="5" stroke-linecap="round"/><path d="M109 118c7 5 15 5 22 0" fill="none" stroke="#c46f61" stroke-width="4" stroke-linecap="round"/><circle cx="80" cy="125" r="6" fill="#ffb1a7"/><circle cx="160" cy="125" r="6" fill="#ffb1a7"/></svg>
+              </div>
+            </div>
+            <span class="sticker">복잡한 일을<br>한 칸씩 가볍게!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap reveal">
+        <div class="section-head"><p class="section-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg>ABOUT</p><h2>기술과 사람 사이,<br>번역기를 자처합니다.</h2></div>
+        <div class="intro-card">
+          <p>안녕하세요. AX 전문가 조미정입니다. 저는 변화가 필요한 업무 현장에서 사람들의 질문과 망설임을 먼저 살피며, 기술이 실질적인 도움으로 닿는 방식을 고민합니다. 어렵고 낯선 도구도 각자의 일 흐름 안에서 자연스럽게 쓰일 때 비로소 의미가 생긴다고 믿습니다. 그래서 문제를 함께 정리하고, 작은 실험으로 해답을 확인하며, 누구나 이어갈 수 있는 방법을 만듭니다. 더 나은 일하는 경험을 향한 대화를 기쁘게 시작하겠습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap"><div class="section-head reveal"><p class="section-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 6.8H21l-5.5 4 2.1 6.8-5.6-4.1-5.6 4.1 2.1-6.8-5.5-4h6.8z"/></svg>MY KEYWORDS</p><h2>클릭하면, 제가 중요하게<br>여기는 이유가 열립니다.</h2></div>
+        <div class="keyword-grid">
+          <button class="keyword reveal" type="button" aria-label="경청 키워드 자세히 보기"><span class="keyword-inner"><span class="keyword-face keyword-front"><span class="keyword-icon"><svg viewBox="0 0 24 24"><path d="M5 11a7 7 0 0 1 14 0v2a3 3 0 0 1-3 3h-1v-5h3M5 11v5h1a3 3 0 0 0 3-3v-2H5"/></svg></span><h3>경청</h3><small>문제의 말보다 맥락을 듣습니다.</small></span><span class="keyword-face keyword-back"><h3>경청</h3><small>좋은 변화는 정확한 질문에서 시작됩니다. 현장의 목소리를 통해 진짜 불편을 찾습니다.</small></span></span></button>
+          <button class="keyword reveal" type="button" aria-label="연결 키워드 자세히 보기"><span class="keyword-inner"><span class="keyword-face keyword-front"><span class="keyword-icon"><svg viewBox="0 0 24 24"><path d="M9 15l6-6M7 7h.01M17 17h.01M6 12a6 6 0 0 1 6-6h2a4 4 0 0 1 0 8h-4a4 4 0 1 0 0 8h2a6 6 0 0 0 6-6"/></svg></span><h3>연결</h3><small>사람·업무·기술의 틈을 잇습니다.</small></span><span class="keyword-face keyword-back"><h3>연결</h3><small>익숙한 업무 방식과 새로운 가능성이 부딪히지 않도록, 모두가 이해하는 언어로 연결합니다.</small></span></span></button>
+          <button class="keyword reveal" type="button" aria-label="실험 키워드 자세히 보기"><span class="keyword-inner"><span class="keyword-face keyword-front"><span class="keyword-icon"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 8a3 3 0 0 0 3 4h8a3 3 0 0 0 3-4l-5-8V3M8 16h8"/></svg></span><h3>실험</h3><small>작게 시작해 확실하게 배웁니다.</small></span><span class="keyword-face keyword-back"><h3>실험</h3><small>한 번에 완벽하려 하지 않습니다. 작동하는 변화를 빠르게 확인하고 다음 걸음을 함께 정합니다.</small></span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap"><div class="section-head reveal"><p class="section-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15v-3m4 3V8m4 7v-5"/></svg>WHAT I DO</p><h2>일의 ‘왜’를 찾고,<br>쓸 수 있는 변화로 답합니다.</h2></div>
+        <div class="task-grid">
+          <article class="task reveal"><span class="task-number">01 · [수정 필요]</span><h3>업무 흐름 함께 보기</h3><p>반복되는 일과 병목 때문에 팀의 시간이 새고 있다면, 실제 일의 순서를 함께 들여다봅니다. 누구에게 어떤 정보가 필요한지 정리해 더 매끄러운 흐름을 찾도록 돕습니다.</p></article>
+          <article class="task reveal"><span class="task-number">02 · [수정 필요]</span><h3>AI 활용의 첫 장 열기</h3><p>AI가 낯설어 어디서부터 써야 할지 모르겠다면, 업무에 맞는 작고 구체적인 사용 장면부터 설계합니다. 도구 소개에 그치지 않고 직접 써 보며 질문을 바꾸는 경험을 돕습니다.</p></article>
+          <article class="task reveal"><span class="task-number">03 · [수정 필요]</span><h3>협업 언어 맞추기</h3><p>기획과 현장, 기술 담당자 사이의 말이 엇갈릴 때 공통의 문제 정의를 만듭니다. 복잡한 내용을 이해하기 쉬운 기준과 다음 행동으로 바꾸도록 돕습니다.</p></article>
+          <article class="task reveal"><span class="task-number">04 · [수정 필요]</span><h3>변화가 남는 방법 만들기</h3><p>새로운 방식이 잠깐의 시도로 끝나지 않도록, 팀이 스스로 이어갈 수 있는 가이드와 점검 방식을 고민합니다. 피드백을 다음 개선으로 연결하는 작은 습관을 함께 만듭니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap"><div class="section-head reveal"><p class="section-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7zM9 12l2 2 4-4"/></svg>MY COMPASS</p><h2>새로운 일을 시작할 때,<br>놓치지 않는 세 가지.</h2></div>
+        <div class="principles">
+          <article class="principle reveal"><div><h3>사람에게서 출발합니다</h3><p>기능보다 먼저, 그 일을 하는 사람의 하루가 어떻게 달라질지 묻습니다.</p></div></article>
+          <article class="principle reveal"><div><h3>쉬운 말로 함께 갑니다</h3><p>전문용어의 벽 대신 모두가 판단하고 참여할 수 있는 언어를 고릅니다.</p></div></article>
+          <article class="principle reveal"><div><h3>작은 성공을 쌓습니다</h3><p>크고 먼 계획만 약속하지 않고, 오늘 바로 확인할 수 있는 변화를 만듭니다.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap"><div class="section-head reveal"><p class="section-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>CURIOUS ABOUT</p><h2>요즘 특히, 이런 장면에<br>마음이 갑니다.</h2></div>
+        <div class="tag-cloud reveal" aria-label="관심 분야"><span class="tag">[수정 필요] 업무 자동화</span><span class="tag">[수정 필요] 생성형 AI 활용</span><span class="tag">[수정 필요] 사람 중심 디지털 전환</span><span class="tag">[수정 필요] 일하는 방식의 변화</span><span class="tag">[수정 필요] 협업 경험 설계</span><span class="tag">[수정 필요] AI 리터러시</span></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap reveal"><p class="section-kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 7l8 6 8-6"/></svg>LET'S TALK</p><h2>작은 물음 하나도<br>좋은 변화의 시작이 될 수 있어요.</h2><p>함께 풀어 보고 싶은 일이 있다면, 편하게 말을 건네 주세요. 차근차근 듣고, 다음 장면을 함께 그려 보겠습니다.</p><a class="contact-button" href="mailto:mjcho7@naver.com?subject=%EC%A1%B0%EB%AF%B8%EC%A0%95%20AX%20%EC%A0%84%EB%AC%B8%EA%B0%80%EB%8B%98%EA%BB%98%20%EB%93%9C%EB%A6%AC%EB%8A%94%20%EB%A9%94%EC%8B%9C%EC%A7%80"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 7l8 6 8-6"/></svg>이메일로 이야기 나누기</a><p class="email-note">이메일 주소: <strong>mjcho7@naver.com</strong></p></div>
+    </section>
+  </main>
+  <footer>© 조미정 · AX 전문가 · 오늘의 일을 조금 더 가볍게</footer>
+
+  <div class="walker-wrap" aria-live="polite"><button class="walker" type="button" aria-label="캐릭터에게 인사하기"><span class="walker-bubble">안녕! 오늘도<br>가볍게 시작해요.</span><svg viewBox="0 0 75 80" aria-hidden="true"><ellipse cx="36" cy="73" rx="24" ry="4" fill="#172039" opacity=".18"/><path d="M19 64v8M49 64v8" stroke="#172039" stroke-width="4" stroke-linecap="round"/><path d="M12 43c0-18 11-29 25-29s26 11 26 29v22H12z" fill="#2f4bbf"/><circle cx="37" cy="30" r="21" fill="#ffd79c"/><path d="M17 29C19 10 32 5 42 9c14 5 17 18 14 28-7-7-15-10-26-11-4 5-8 7-13 8z" fill="#253458"/><circle cx="29" cy="31" r="2.2" fill="#172039"/><circle cx="44" cy="31" r="2.2" fill="#172039"/><path d="M32 40c3 2 6 2 9 0" fill="none" stroke="#c46f61" stroke-width="2.5" stroke-linecap="round"/><path d="M13 48L5 56M61 48l8-8" stroke="#ffd79c" stroke-width="5" stroke-linecap="round"/></svg></button></div>
+  <script>
+    (() => {
+      const greeting = document.getElementById('timeGreeting');
+      const hour = new Date().getHours();
+      greeting.textContent = hour < 11 ? '좋은 아침이에요.' : hour < 15 ? '가볍게 점심 인사해요.' : hour < 20 ? '오늘 하루도 반가워요.' : '오늘을 잘 마무리해요.';
+
+      const reduceMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const toggle = document.querySelector('.motion-toggle');
+      const setMotion = (off) => { document.body.classList.toggle('motion-off', off); toggle.setAttribute('aria-pressed', String(off)); toggle.textContent = off ? '동작 다시 켜기' : '동작 줄이기'; };
+      setMotion(reduceMedia.matches);
+      toggle.addEventListener('click', () => setMotion(!document.body.classList.contains('motion-off')));
+
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reduceMedia.matches && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('show'); observer.unobserve(entry.target); } }), { threshold: .12 });
+        reveals.forEach((item) => observer.observe(item));
+      } else { reveals.forEach((item) => item.classList.add('show')); }
+
+      document.querySelectorAll('.keyword').forEach((card) => card.addEventListener('click', () => { if (!document.body.classList.contains('motion-off')) card.classList.toggle('is-flipped'); else card.classList.toggle('is-flipped'); }));
+      const walker = document.querySelector('.walker');
+      const bubble = document.querySelector('.walker-bubble');
+      walker.addEventListener('click', () => { if (document.body.classList.contains('motion-off')) return; walker.classList.remove('is-jumping'); void walker.offsetWidth; walker.classList.add('is-jumping'); bubble.classList.add('show'); window.setTimeout(() => bubble.classList.remove('show'), 2400); });
+    })();
+  </script>
+</body>
+</html>
